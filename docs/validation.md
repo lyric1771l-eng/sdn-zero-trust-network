@@ -2,7 +2,7 @@
 
 The original group project was run and validated in a Linux VM hosted in UTM, as confirmed by Yan Liang. The [group project website](https://sites.google.com/view/2026t2ztrust-mini-project) accompanies the project.
 
-Portfolio preparation date: 2026-11-03. Six offline regression tests and Python syntax checks passed. The portfolio edition corrects source-host filtering in the verification script; that specific revision has not been rerun in Mininet. Original project validation and validation of this later revision are separate. The following steps are provided for reproduction, not as a requirement to repeat the already completed group project.
+Portfolio preparation date: 2026-11-03. The original project scripts are preserved. Three supplementary offline checks cover reputation parameters. The following steps are provided for reproduction, not as a requirement to repeat the already completed group project.
 
 ## Capture the environment
 
