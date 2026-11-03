@@ -10,7 +10,7 @@ This portfolio version is based on a university group project run in a Linux vir
 
 **[View the group project website](https://sites.google.com/view/2026t2ztrust-mini-project)**
 
-Topology, routing and policy components provide the wider group-project context; I do not claim independent authorship of every component. This portfolio edition adds documentation and regression checks and corrects source-host filtering in the verification script.
+Topology, routing and policy components provide the wider group-project context; I do not claim independent authorship of every component. This portfolio edition adds documentation and offline checks while preserving the original project scripts.
 
 ## Architecture
 
@@ -91,7 +91,7 @@ mininet> sh ovs-ofctl -O OpenFlow13 meter-stats e_2_0
 
 The original group project was run and validated in a Linux VM hosted in UTM. The scripts cover six traffic scenarios and five adaptive-response checks.
 
-For the portfolio edition, six offline regression tests passed. The source-host filtering correction in the verification script has not been rerun against the live Mininet network; this does not replace or invalidate the original project validation. See the [validation guide](docs/validation.md) for the distinction and optional reproduction steps.
+The original project scripts are preserved. Three supplementary offline checks cover the reputation parameters; they do not replace the completed Linux VM validation. See the [validation guide](docs/validation.md) for optional reproduction steps.
 
 Run dependency-free regression checks with:
 
@@ -99,7 +99,7 @@ Run dependency-free regression checks with:
 python3 -m unittest discover -s tests -v
 ```
 
-These check controller parameter logic and verification parsing, not the real OpenFlow datapath. No measured latency, throughput or detection-accuracy benchmark is claimed.
+These check controller parameter logic, not the real OpenFlow datapath. No measured latency, throughput or detection-accuracy benchmark is claimed.
 
 ## Files
 
