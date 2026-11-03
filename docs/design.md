@@ -17,7 +17,7 @@ Flow expiry clears observations and active response state. Reputation decay is c
 - Reuse the same scanner for first and repeated offences.
 - Probe an already-observed same-pod destination: a cross-pod failure could be the ACL, while a new destination can itself trigger detection.
 - Inspect flow rules as well as ping. A throttled host can still respond.
-- Filter verification by source IP, avoiding false results from a neighbour on the same switch. This was corrected in the portfolio edition.
+- The original verification script inspects response cookies at switch level. Its results should be interpreted within the controlled demo, without unrelated enforcement rules on that switch.
 
 ## Limitations
 
