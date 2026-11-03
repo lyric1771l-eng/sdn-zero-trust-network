@@ -6,7 +6,9 @@ A Python networking lab exploring explicit access policies and behaviour-based r
 
 ## Background and my contribution
 
-This portfolio version is based on a university group project run in a Linux virtual machine using UTM. My main contribution was **dynamic-window detection and tiered response**: tracking destination diversity, adjusting detection parameters using per-host strikes, and escalating from temporary throttling to quarantine. I also presented this part of the project.
+This portfolio version is based on a university group project run in a Linux virtual machine using UTM. My main contribution was **dynamic-window detection and tiered response**: tracking destination diversity, adjusting detection parameters using per-host strikes, and escalating from temporary throttling to quarantine. I also presented this part of the project and designed the group project website.
+
+**[View the group project website](https://sites.google.com/view/2026t2ztrust-mini-project)**
 
 Topology, routing and policy components provide the wider group-project context; I do not claim independent authorship of every component. This portfolio edition adds documentation and regression checks and corrects source-host filtering in the verification script.
 
@@ -87,7 +89,9 @@ mininet> sh ovs-ofctl -O OpenFlow13 meter-stats e_2_0
 
 ## Validation
 
-The scripts contain six traffic scenarios and five adaptive-response checks. **A fresh end-to-end run has not been performed for this portfolio edition.** Preparation was on macOS without Mininet/Ryu. Expected outcomes are documented separately from measured results in the [validation guide](docs/validation.md).
+The original group project was run and validated in a Linux VM hosted in UTM. The scripts cover six traffic scenarios and five adaptive-response checks.
+
+For the portfolio edition, six offline regression tests passed. The source-host filtering correction in the verification script has not been rerun against the live Mininet network; this does not replace or invalidate the original project validation. See the [validation guide](docs/validation.md) for the distinction and optional reproduction steps.
 
 Run dependency-free regression checks with:
 
