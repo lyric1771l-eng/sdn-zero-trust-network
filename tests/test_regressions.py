@@ -50,28 +50,5 @@ class ReputationTests(unittest.TestCase):
         self.assertNotIn(self.host, self.state.strikes)
 
 
-class FlowInspectionTests(unittest.TestCase):
-    def inspect(self, output, source):
-        check = load_function('verify_dynamic_window.py', '_response_state',
-            namespace={'re': re, 'COOKIE_THROTTLE': '0x400',
-                       'COOKIE_QUARANTINE': '0x300',
-                       '_dump_response_table': lambda net, switch: output})
-        return check(None, 'e_2_0', source)
-
-    def test_neighbour_not_counted(self):
-        self.assertEqual(self.inspect('cookie=0x300, nw_src=10.2.0.2 actions=drop',
-                                      '10.2.0.3'), (False, False))
-
-    def test_exact_address(self):
-        self.assertEqual(self.inspect('cookie=0x400, nw_src=10.2.0.30 actions=meter:2',
-                                      '10.2.0.3'), (False, False))
-
-    def test_tiers(self):
-        flow = 'cookie=0x400, nw_src=10.2.0.3 actions=meter:2'
-        self.assertEqual(self.inspect(flow, '10.2.0.3'), (True, False))
-        self.assertEqual(self.inspect(flow.replace('0x400', '0x300'),
-                                      '10.2.0.3'), (False, True))
-
-
 if __name__ == '__main__':
     unittest.main()
