@@ -121,13 +121,10 @@ def _dump_response_table(net, switch_name):
     )
 
 
-def _response_state(net, switch_name, source_ip):
-    """Inspect this source only, excluding neighbours on the same switch."""
+def _response_state(net, switch_name):
+    """Return (has_throttle, has_quarantine) for this switch."""
     dump = _dump_response_table(net, switch_name)
-    pattern = r"\bnw_src=" + re.escape(source_ip) + r"(?:[,\s]|$)"
-    flows = [line for line in dump.splitlines() if re.search(pattern, line)]
-    return (any(COOKIE_THROTTLE in line for line in flows),
-            any(COOKIE_QUARANTINE in line for line in flows))
+    return (COOKIE_THROTTLE in dump, COOKIE_QUARANTINE in dump)
 
 
 def _describe_response(has_throttle, has_quarantine):
@@ -165,7 +162,7 @@ def _check(net, host_name, switch_name, check_target, label):
     """Return (reachable, has_throttle, has_quarantine)."""
     time.sleep(1)  # let Packet-In / Flow-Mod settle
     reachable = _ping_once(net.get(host_name), check_target)
-    has_throttle, has_quarantine = _response_state(net, switch_name, net.get(host_name).IP())
+    has_throttle, has_quarantine = _response_state(net, switch_name)
     info("*** [%s] post-probe check: %s -> %s is %s | response tier on %s: %s\n\n"
          % (label, host_name, check_target,
             "reachable" if reachable else "blocked",
